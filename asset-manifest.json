@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/mj-prompt-maker/static/css/main.2c5c4586.css",
-    "main.js": "/mj-prompt-maker/static/js/main.ac5a55b4.js",
+    "main.css": "/mj-prompt-maker/static/css/main.ae073448.css",
+    "main.js": "/mj-prompt-maker/static/js/main.f59a0100.js",
     "static/js/787.294537e6.chunk.js": "/mj-prompt-maker/static/js/787.294537e6.chunk.js",
     "index.html": "/mj-prompt-maker/index.html",
-    "main.2c5c4586.css.map": "/mj-prompt-maker/static/css/main.2c5c4586.css.map",
-    "main.ac5a55b4.js.map": "/mj-prompt-maker/static/js/main.ac5a55b4.js.map",
+    "main.ae073448.css.map": "/mj-prompt-maker/static/css/main.ae073448.css.map",
+    "main.f59a0100.js.map": "/mj-prompt-maker/static/js/main.f59a0100.js.map",
     "787.294537e6.chunk.js.map": "/mj-prompt-maker/static/js/787.294537e6.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.2c5c4586.css",
-    "static/js/main.ac5a55b4.js"
+    "static/css/main.ae073448.css",
+    "static/js/main.f59a0100.js"
   ]
 }
