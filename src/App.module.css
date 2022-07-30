@@ -12,3 +12,12 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
+
+.Panel {
+  padding: 20px;
+  width: 70%;
+  background-color: rgb(77, 86, 94);
+  border-radius: 2em;
+  color: rgb(234, 244, 255);
+}
+

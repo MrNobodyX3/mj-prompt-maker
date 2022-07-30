@@ -1,0 +1,59 @@
+.Root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Sizer {
+  width: 100%;
+  height: 550px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Grid {
+  display: grid;
+  grid-template-areas:
+    "H X X"
+    "H X X"
+    ". W W";
+}
+
+.Height {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  grid-area: H;
+  width: 20px;
+  height: 512px;
+}
+
+.HeightInput {
+  width: 514px;
+  transform: rotateZ(-90deg);
+}
+
+.Width {
+  width: 514px;
+  grid-area: W;
+}
+
+.Box {
+  grid-area: X;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  width: 512px;
+  height: 512px;
+  background-color: rgb(77, 86, 94);
+  border-radius: 2em;
+  color: rgb(234, 244, 255);
+}
+
+.Display {
+  background-color: rgb(141, 148, 154);
+  border: 3px solid rgb(234, 244, 255);
+  border-radius: .25em;
+}
