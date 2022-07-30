@@ -1,3 +1,4 @@
+import { wait } from "@testing-library/user-event/dist/utils";
 import { useState } from "react";
 import sstyle from "./Size.module.css";
 
@@ -58,7 +59,19 @@ export default function Size(props: SizeProps) {
         <input
           type="checkbox"
           checked={props.HD}
-          onChange={(e) => props.setHD(e.target.checked)}
+          onChange={(e) => {
+            props.setHD(e.target.checked);
+            if (Number(props.height) < minNum) {
+              props.onChangeH(minNum);
+            } else if (Number(props.height) > maxNum) {
+              props.onChangeH(maxNum);
+            }
+            if (Number(props.width) < minNum) {
+              props.onChangeW(minNum);
+            } else if (Number(props.width) > maxNum) {
+              props.onChangeW(maxNum);
+            }
+          }}
         />
       </span>
       <div className={sstyle.Sizer}>
