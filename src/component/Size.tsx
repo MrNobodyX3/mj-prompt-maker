@@ -1,123 +1,79 @@
 import { wait } from "@testing-library/user-event/dist/utils";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import sstyle from "./Size.module.css";
 
 type SizeProps = {
   width: number;
   height: number;
-  onChangeW: (width: number) => void;
-  onChangeH: (height: number) => void;
-  HD: boolean;
-  setHD: (HD: boolean) => void;
+  onChange: (width: number, height: number) => void;
 };
 
 export default function Size(props: SizeProps) {
-  const minNum = props.HD ? 128 : 64;
-  const maxNum = props.HD ? 1024 : 512;
-  const multiplier = props.HD ? 0.5 : 1;
+  const [aspectWidth, setAspectWidth] = useState(1);
+  const [aspectHeight, setAspectHeight] = useState(1);
+  const [maxWidth, setMaxWidth] = useState(1024);
+  const [maxHeight, setMaxHeight] = useState(1024);
+
+  useEffect(() => {
+    if (aspectWidth === aspectHeight) {
+      props.onChange(256, 256);
+      setMaxWidth(1024);
+      setMaxHeight(1024);
+    } else if (aspectWidth > aspectHeight) {
+      const diff = aspectWidth / aspectHeight;
+      props.onChange(Math.ceil(256 * diff), 256);
+      setMaxWidth(1024);
+      setMaxHeight(Math.round(1024 / diff));
+    } else {
+      const diff = aspectHeight / aspectWidth;
+      props.onChange(256, Math.ceil(256 * diff));
+      setMaxWidth(Math.round(1024 / diff));
+      setMaxHeight(1024);
+    }
+  }, [aspectWidth, aspectHeight]);
 
   return (
     <div className={sstyle.Root}>
+      <h3>Scale Tool</h3>
       <div>
-        <label>
-          --w {props.width} --h {props.height} {props.HD ? "--hd" : ""}
-        </label>
+        {maxWidth}x{maxHeight}
       </div>
-      <span>
+      <div>
+        Aspect Ratio{" "}
         <input
           className={sstyle.Input}
           type="number"
-          min={minNum}
-          max={maxNum}
-          value={props.width}
-          onChange={(e) => props.onChangeW(Number(e.target.value))}
-          onBlur={(e) => {
-            if (Number(e.target.value) < minNum) {
-              props.onChangeW(minNum);
-            } else if (Number(e.target.value) > maxNum) {
-              props.onChangeW(maxNum);
-            }
-          }}
-        />
-        x
-        <input
-          className={sstyle.Input}
-          type="number"
-          min={minNum}
-          max={maxNum}
-          value={props.height}
-          onChange={(e) => props.onChangeH(Number(e.target.value))}
-          onBlur={(e) => {
-            if (Number(e.target.value) < minNum) {
-              props.onChangeH(minNum);
-            } else if (Number(e.target.value) > maxNum) {
-              props.onChangeH(maxNum);
-            }
-          }}
-        />{" "}
-        Set HD:
-        <input
-          type="checkbox"
-          checked={props.HD}
+          value={aspectWidth}
+          min={1}
+          step={1}
           onChange={(e) => {
-            props.setHD(e.target.checked);
-            if (Number(props.height) < minNum) {
-              props.onChangeH(minNum);
-            } else if (Number(props.height) > maxNum) {
-              props.onChangeH(maxNum);
-            }
-            if (Number(props.width) < minNum) {
-              props.onChangeW(minNum);
-            } else if (Number(props.width) > maxNum) {
-              props.onChangeW(maxNum);
-            }
+            setAspectWidth(Number(e.target.value));
           }}
         />
-      </span>
-      <div className={sstyle.Sizer}>
-        <div className={sstyle.Grid}>
-          <div className={sstyle.Height}>
-            <input
-              type="range"
-              min="0"
-              max={maxNum}
-              value={props.height}
-              className={sstyle.HeightInput}
-              onChange={(e) => {
-                if (Number(e.target.value) >= minNum) {
-                  props.onChangeH(Number(e.target.value));
-                } else {
-                  props.onChangeH(minNum);
-                }
-              }}
-            />
+        {" : "}
+        <input
+          className={sstyle.Input}
+          type="number"
+          value={aspectHeight}
+          min={1}
+          step={1}
+          onChange={(e) => {
+            setAspectHeight(Number(e.target.value));
+          }}
+        />
+      </div>
+      <div className={sstyle.Scale}></div>
+      <div className={sstyle.Frame}>
+        <div
+          className={sstyle.Image}
+          style={{
+            width: `${props.width / 2}px`,
+            height: `${props.height / 2}px`,
+          }}
+        >
+          <div className={sstyle.ImageScale}>
+            {props.width}x{props.height}
           </div>
-          <div className={sstyle.Box}>
-            <div
-              className={sstyle.Display}
-              style={{
-                width: props.width * multiplier,
-                height: props.height * multiplier,
-                fontSize: `${Math.min(props.width * multiplier * 0.2, 32)}px`,
-              }}
-            >
-              {props.width} x {props.height}
-            </div>
-          </div>
-          <input
-            type="range"
-            min="0"
-            max={maxNum}
-            value={props.width}
-            className={sstyle.Width}
-            onChange={(e) => {
-              if (Number(e.target.value) >= minNum) {
-                props.onChangeW(Number(e.target.value));
-              } else {
-                props.onChangeW(minNum);
-              }
-            }}
-          />
         </div>
       </div>
     </div>

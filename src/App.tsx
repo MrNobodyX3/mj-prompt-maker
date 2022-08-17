@@ -15,10 +15,10 @@ function App() {
           <Size
             width={width}
             height={height}
-            onChangeW={(width) => setWidth(width)}
-            onChangeH={(height) => setHeight(height)}
-            HD={isHD}
-            setHD={(HD) => setIsHD(!isHD)}
+            onChange={(width, height) => {
+              setWidth(width);
+              setHeight(height);
+            }}
           />
         </div>
       </header>
