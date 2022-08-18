@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/mj-prompt-maker/static/css/main.36465ce0.css",
-    "main.js": "/mj-prompt-maker/static/js/main.667dcb61.js",
+    "main.css": "/mj-prompt-maker/static/css/main.a2608541.css",
+    "main.js": "/mj-prompt-maker/static/js/main.475d152b.js",
     "static/js/787.294537e6.chunk.js": "/mj-prompt-maker/static/js/787.294537e6.chunk.js",
     "index.html": "/mj-prompt-maker/index.html",
-    "main.36465ce0.css.map": "/mj-prompt-maker/static/css/main.36465ce0.css.map",
-    "main.667dcb61.js.map": "/mj-prompt-maker/static/js/main.667dcb61.js.map",
+    "main.a2608541.css.map": "/mj-prompt-maker/static/css/main.a2608541.css.map",
+    "main.475d152b.js.map": "/mj-prompt-maker/static/js/main.475d152b.js.map",
     "787.294537e6.chunk.js.map": "/mj-prompt-maker/static/js/787.294537e6.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.36465ce0.css",
-    "static/js/main.667dcb61.js"
+    "static/css/main.a2608541.css",
+    "static/js/main.475d152b.js"
   ]
 }
