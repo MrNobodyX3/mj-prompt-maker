@@ -15,24 +15,27 @@ export default function Size(props: SizeProps) {
   const [maxWidth, setMaxWidth] = useState(1024);
   const [maxHeight, setMaxHeight] = useState(1024);
 
+  const sysMin = 256;
+  const sysMax = 1024;
+
   const [scale, setScale] = useState(1);
   const [show, setShow] = useState(false);
 
   useEffect(() => {
     if (aspectWidth === aspectHeight) {
-      props.onChange(1024, 1024);
-      setMaxWidth(1024);
-      setMaxHeight(1024);
+      props.onChange(sysMax, sysMax);
+      setMaxWidth(sysMax);
+      setMaxHeight(sysMax);
     } else if (aspectWidth > aspectHeight) {
       const diff = aspectWidth / aspectHeight;
-      props.onChange(Math.ceil(1024 * diff), 102);
-      setMaxWidth(1024);
-      setMaxHeight(Math.round(1024 / diff));
+      props.onChange(Math.ceil(sysMax * diff), 102);
+      setMaxWidth(sysMax);
+      setMaxHeight(Math.round(sysMax / diff));
     } else {
       const diff = aspectHeight / aspectWidth;
-      props.onChange(1024, Math.ceil(1024 * diff));
-      setMaxWidth(Math.round(1024 / diff));
-      setMaxHeight(1024);
+      props.onChange(sysMax, Math.ceil(sysMax * diff));
+      setMaxWidth(Math.round(sysMax / diff));
+      setMaxHeight(sysMax);
     }
     setScale(1);
   }, [aspectWidth, aspectHeight]);
@@ -77,8 +80,7 @@ export default function Size(props: SizeProps) {
             <button
               className={sstyle.ButtonSmall}
               onClick={() => {
-                //   if max width or height is <= than 256 after scaling, don't scale
-                if (maxWidth <= 256 || maxHeight <= 256) {
+                if (maxWidth <= sysMin || maxHeight <= sysMin) {
                   return;
                 }
                 setScale(0.25);
